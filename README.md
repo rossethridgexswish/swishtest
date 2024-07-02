@@ -128,3 +128,10 @@ CVE-2018-20225:
 and that being installed instead of the company-internal version, and that public package on PyPI being malicious.  
 That is an astoundingly small window of opportunity, and would very likely be a targeted attack. "
 ```
+### Monitoring
+```text
+Typically we would use promethius to monitor our kube depoyments.
+There are other great tools out there that cost money, such as DataDog.
+Choice depends on buidget:
+https://prometheus-operator.dev/docs/getting-started/quick-start/
+```
