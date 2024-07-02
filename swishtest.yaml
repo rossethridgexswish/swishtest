@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: swishtest
+spec:
+  containers:
+    - name: swishtest
+      image: rossethridgexswish/swishtest:2.0
+      command: ["/bin/bash"]
+      args: ["-c", "trap : TERM INT; sleep infinity & wait"]

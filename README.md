@@ -117,4 +117,14 @@ Python 2.7.18
 ```text
 https://hub.docker.com/repository/docker/rossethridgexswish/swishtest/general
 ```
+### Resolving CVE's
+#### CVE-2018-20225
+```text
+From our Docker repo we can see that there are a few CVE's from tag 1.0 of the swishtest container.
+Tag 2.0 only has a single CVE that is a disputed exploit based on conditions of how it can be exploited.
 
+CVE-2018-20225:
+" The only plausible attack is a name collision on the public PyPI index with some company-internal package,  
+and that being installed instead of the company-internal version, and that public package on PyPI being malicious.  
+That is an astoundingly small window of opportunity, and would very likely be a targeted attack. "
+```
