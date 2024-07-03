@@ -180,3 +180,7 @@ Storage would become sparse when removing nodes, but in the cloud its a simple A
 Again, not re-inventing the wheel for architecture, just using best practice:
 https://www.project-voldemort.com/voldemort/design.html
 ```
+### Monitoring for memory usage and errors
+```text
+We can use any off the shelf program to monitor distributed key value stores for memory errors and usage
+```
