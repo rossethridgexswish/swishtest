@@ -130,8 +130,8 @@ That is an astoundingly small window of opportunity, and would very likely be a 
 ```
 ### Monitoring
 ```text
-Typically we would use promethius to monitor our kube depoyments.
+Typically we would use Prometheus to monitor our kube deployments.
 There are other great tools out there that cost money, such as DataDog.
-Choice depends on buidget:
+Choice depends on budget:
 https://prometheus-operator.dev/docs/getting-started/quick-start/
 ```
