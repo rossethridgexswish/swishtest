@@ -133,3 +133,50 @@ There are other great tools out there that cost money, such as DataDog.
 Choice depends on budget:
 https://prometheus-operator.dev/docs/getting-started/quick-start/
 ```
+
+## Supporting multiple environments
+```text
+Best practice for supporting multiple environments is to have different clusters, DEV, STAGE, PROD, etc and a different kubeconfig for each environment  
+Rather than re-invent the wheel, I would defer to best practice:
+
+https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable
+
+This would refer to different Jenkins jobs that would have a different kubeconfig for each environment:
+Like a Kube-Dev job that launched pods on that specific cluster, Kube-Stage and Kube-prod.
+Each one targeting a different cluster with different parameters and images.
+
+If using Terraform, I would have a different set of TFVARS for each environment which would simplify it and also allow for modification on the fly based on Terraform variable precedence,
+```
+## Monitoring and validating
+```text
+For validating actual state vs expected state I usually rely on tool like OPA (Open Policy Agent)
+https://kubernetes.io/blog/2019/08/06/opa-gatekeeper-policy-and-governance-for-kubernetes/
+
+This takes output from actual state and compares it against a set of defined policy and gives you a pass or fail result.
+
+Other helpful tools are Kube-Score. This validates the yaml against deployments but you umay not have YAML if using Terraform:
+https://learnk8s.io/validating-kubernetes-yaml#kube-score
+
+OPA also validates the TF code based on state from a terraform plan, so you could validate the TF expected state
+https://www.openpolicyagent.org/docs/latest/terraform/
+
+Kube scale sets would allow us to downscale and upscale as needed.
+https://kubernetes.io/docs/reference/kubectl/generated/kubectl_scale/
+```
+## Bringing Data to the Code
+```text
+For large scale distributed data store I have used Voldemort. This KV store / distributed data base was developed by LinkedIn.
+https://en.wikipedia.org/wiki/Voldemort_(distributed_data_store)
+
+It runs in clusters and is horizontally scalable:
+https://www.project-voldemort.com/voldemort/
+
+You can add nodes and repartition as needed. 
+
+In my experience the downside was the time it takes to allow for the partition redistributing when adding or subtracting nodes.
+It was seamless to the end user but made me a little nervous when I was on call. I would watch and wait for hours sometimes.
+Storage would become sparse when removing nodes, but in the cloud its a simple API call to expand volumes.
+
+Again, not re-inventing the wheel for architecture, just using best practice:
+https://www.project-voldemort.com/voldemort/design.html
+```
