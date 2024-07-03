@@ -24,7 +24,7 @@ Swap:          20479           0       20479
 ### My Dockerfile
 ```text
 # Get latest version of Ubuntu
-FROM ubuntu:latest
+FROM ubuntu:24.10
 
 # Install packages without interaction
 ENV DEBIAN_FRONTEND=noninteractive
@@ -35,13 +35,11 @@ RUN apt update && apt install -y build-essential r-base python3 python3-pip pyth
 # Set your working directory
 WORKDIR /swish
 
-## If you need additional py packages
 # COPY requirements.txt /swish/requirements.txt
 
-## Tell pip to install deps if you have any
 # RUN pip3 install -r requirements.txt
 
-# R package to work with tabular data
+# Package to work with tabular data
 RUN Rscript -e "install.packages('data.table')"
 
 # Download python 2.7.x source code
